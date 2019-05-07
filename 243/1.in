@@ -1,0 +1,31 @@
+11 15 4
+Matinicus 7 13
+Minot 13 6
+Maybee -3 -5
+Merlin 1 5
+Mayodan -7 5
+Mapleton 7 8
+Marlinton 11 -2
+Moonridge 9 -9
+Marbury 5 -4
+Mize 5 1
+Marion 0 0
+Mayodan Merlin 10.5
+Mayodan Marion 16
+Merlin Matinicus 19
+Matinicus Mapleton 12
+Mapleton Minot 6.4
+Minot Marlinton 8.5
+Marlinton Moonridge 11
+Moonridge Marbury 8
+Marbury Maybee 9
+Maybee Marion 7
+Merlin Mize 6.1
+Marion Mize 7
+Marbury Mize 5.2
+Mapleton Mize 9.5
+Mapleton Marbury 17
+Mize Marbury
+Minot Mayodan
+Moonridge Mapleton
+Maybee Marlinton

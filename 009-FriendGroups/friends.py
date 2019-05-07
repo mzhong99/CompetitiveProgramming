@@ -1,0 +1,25 @@
+from collections import defaultdict as DD
+
+N, F = map(int, input().split())
+names = set(input().split())
+adj = DD(list)
+for _ in range(F):
+    a, b = input().split()
+    adj[a].append(b)
+    adj[b].append(a)
+seen = set()
+num_groups = 0
+for person in names:
+    if person in seen:
+        continue
+    else:
+        stack = [person]
+        seen.add(person)
+        while stack:
+            cursor = stack.pop()
+            for peer in adj[cursor]:
+                if peer not in seen:
+                    seen.add(peer)
+                    stack.append(peer)
+        num_groups += 1
+print(num_groups)

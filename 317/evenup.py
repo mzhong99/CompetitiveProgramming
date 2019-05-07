@@ -1,0 +1,10 @@
+n = input()
+vals = map(int, input().split())
+stack = []
+for v in vals:
+    stack.append(v % 2)
+    if len(stack) > 1:
+        if stack[-1] == stack[-2]:
+            stack.pop()
+            stack.pop()
+print(len(stack))

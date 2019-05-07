@@ -1,0 +1,60 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int has_cycle(int V, vector<int>* adj) {
+	bool seen[V];
+	for (int v = 0; v < V; v++) {
+		seen[v] = false;
+	}
+	for (int seed = 0; seed < V; seed++) {
+		if (seen[seed]) {
+			continue;
+		}
+		seen[seed] = true;
+		stack<int> dfs = stack<int>();
+		dfs.push(seed);
+		int meme = 0;
+		while (!dfs.empty() && meme < 1000000) {
+			int curr = dfs.top();
+			dfs.pop();
+			for (int &neighbor : adj[curr]) {
+				dfs.push(neighbor);
+				seen[neighbor] = true;
+			}
+			meme++;
+			if (meme == 1000000) {
+				return false;
+			}
+		}
+	}
+	return true;
+}
+
+int main() {
+	int V, E;
+	cin >> V >> E;
+	vector<int>* adj = new vector<int>[V];
+	for (int e = 0; e < E; e++) {
+		int a, b;
+		cin >> a >> b;
+		adj[a].push_back(b);
+		adj[b].push_back(a);
+	}
+	/*
+	for (int v = 0; v < V; v++) {
+		cout << v << ": ";
+		for (auto it = adj[v].begin(); it != adj[v].end(); it++) {
+			cout << *it << " ";
+		}
+		cout << endl;
+	}
+	*/
+	if (has_cycle(V, adj)) {
+		cout << "Good" << endl;
+	}
+	else {
+		cout << "Bad" << endl;
+	}
+	delete [] adj;
+	return 0;
+}

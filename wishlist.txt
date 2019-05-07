@@ -1,0 +1,6 @@
+Problem | Title                      | Approach / Algorithm
+================================================================================
+ 69     | Signal Strength            | BFS / Dijkstra's
+191     | Rubik's Revenge in 2D? 3D? | looks like BFS
+194     | Lakes in Berland           | Islands problem, BFS / Floodfill
+200     | Underground Lab            | DFS

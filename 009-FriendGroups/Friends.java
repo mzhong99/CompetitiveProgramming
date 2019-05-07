@@ -1,0 +1,49 @@
+import java.util.*;
+
+public class Friends {
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		int F = in.nextInt();
+		int L = in.nextInt();
+		String[] names = new String[F];
+		HashMap<String, Integer> nameToIndex = new HashMap<String, Integer>();
+		boolean[] alreadyUsed = new boolean[F];
+		Arrays.fill(alreadyUsed, false);
+		for (int i = 0; i < F; i++) {
+			names[i] = in.next();
+			nameToIndex.put(names[i], i);
+		}
+		ArrayList<Integer>[] adj = (ArrayList<Integer>[]) new ArrayList[F];
+		for (int i = 0; i < F; i++) {
+			adj[i] = new ArrayList<Integer>();
+		}
+		for (int i = 0; i < L; i++) {
+			int a = nameToIndex.get(in.next());
+			int b = nameToIndex.get(in.next());
+			adj[a].add(b);
+			adj[b].add(a);
+		}
+		int cycles = 0;
+		for (int i = 0; i < F; i++) {
+			if (alreadyUsed[i]) {
+				continue;
+			}
+			else {
+				cycles++;
+				Stack<Integer> stack = new Stack<Integer>();
+				stack.push(i);
+				alreadyUsed[i] = true;
+				while (!stack.isEmpty()) {
+					int cursor = stack.pop();
+					for (int n : adj[cursor]) {
+						if (!alreadyUsed[n]) {
+							stack.push(n);
+							alreadyUsed[n] = true;
+						}
+					}
+				}
+			}
+		}
+		System.out.println(cycles);
+	}
+}

@@ -1,0 +1,99 @@
+import java.util.*;
+public class NQueens {
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		int N = in.nextInt();
+		String[][] board = new String[N][N];
+		boolean[][] canPlace = new boolean[N][N];
+		for (int r_idx = 0; r_idx < N; r_idx++) {
+			for (int c_idx = 0; c_idx < N; c_idx++) {
+				board[r_idx][c_idx] = ".";
+				canPlace[r_idx][c_idx] = true;
+			}
+		}
+		solve(0, board, canPlace, N);
+	}
+	public static void solve(int numPlaced, String[][] board, boolean[][] canPlace, int N) {
+		// base case: board completely unsafe and you still have queens to place
+		// check for completely used board
+		boolean completelyFilled = true;
+		
+		outer:
+		for (boolean[] row : canPlace) {
+			for (boolean tile : row) {
+				if (tile) {
+					completelyFilled = false;
+					break outer;
+				}
+			}
+		}
+		
+		// if not completely filled, need to progress
+		// for each tile
+		
+		if (!completelyFilled) {
+			for (int r_idx = 0; r_idx < N; r_idx++) {
+				for (int c_idx = 0; c_idx < N; c_idx++) {
+					if (canPlace[r_idx][c_idx]) {
+						board[r_idx][c_idx] = "X";
+						update(board, canPlace, N);
+						solve(numPlaced + 1, board, canPlace, N);
+						board[r_idx][c_idx] = ".";	
+						update(board, canPlace, N);
+					}
+				}
+			}
+		}
+
+		// For completely flooded board (no more safe tiles)
+		else {
+			// on successful n queens placed
+			if (numPlaced == N) {
+				for (String[] line : board) {
+					for (String s : line) {
+						System.out.print(s);
+					}
+					System.out.println();
+				}
+				System.exit(0);
+			}
+		}
+	}
+
+	public static void update(String[][] board, boolean[][] canPlace, int N) {
+		for (int r = 0; r < N; r++) {
+			for (int c = 0; c < N; c++) {
+				canPlace[r][c] = true;
+			}
+		}
+		for (int r_idx = 0; r_idx < N; r_idx++) {
+			for (int c_idx = 0; c_idx < N; c_idx++) {
+				if (board[r_idx][c_idx].equals("X")) {
+					wipeout(r_idx, c_idx, canPlace, N);
+				}
+			}
+		}
+	}
+
+	public static void wipeout(int r_idx, int c_idx, boolean[][] canPlace, int N) {
+		// cardinal
+		for (int i = 0; i < N; i++) {
+			canPlace[r_idx][i] = false;
+			canPlace[i][c_idx] = false;
+		}
+
+		// NW and SE
+		for (int r = r_idx - N, c = c_idx - N, i = 0; i < 2 * N; r++, c++, i++) {
+			if (r >= 0 && r < N && c > 0 && c < N) {
+				canPlace[r][c] = false;
+			}
+		}
+
+		// SW and NE
+		for (int r = r_idx - N, c = c_idx + N, i = 0; i < 2 * N; r++, c--, i++) {
+			if (r >= 0 && r < N && c > 0 && c < N) {
+				canPlace[r][c] = false;
+			}
+		}
+	}
+}
