@@ -4,3 +4,21 @@ Problem | Title                      | Approach / Algorithm
 191     | Rubik's Revenge in 2D? 3D? | looks like BFS
 194     | Lakes in Berland           | Islands problem, BFS / Floodfill
 200     | Underground Lab            | DFS
+229     | Hey of the Haystack        | Hashmap / Dynamic Programming
+235     | Tempus et Mobilius         | Some form of implementation
+242     | GPS Routing                | Alphastar
+254     | Alphabet                   | Hashmap / Dynamic Programming
+259     | Water                      | Maxflow
+267     | Print the Permutations     | Backtracking / Permutations
+273     | Find the Apple             | Hashing / Backtracking
+274     | Protein Synergy            | Dijkstra
+279     | Searching for the Answer   | Binary Search
+280     | Too Slow                   | Data Structure Design (Stack)
+281     | Pawn Game                  | Minimax / Dynamic Programming
+285     | Rubber Band                | Geometry / Binary Search
+286     | Lowest Factor Sum          | Dynamic Programming
+287     | Maximal Sum 2D Large       | Dynamic Programming
+289     | Swear Filter               | Hashing / C++ Library Conversions
+306     | Robot Navigation           | BFS
+
+stopped catalog at around 320 (page 4)
